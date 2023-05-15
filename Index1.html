@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <style>
+    body {
+      background-color: #f1f1f1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      width: 300px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      animation: slide-up 0.5s ease-out;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      transition: border-color 0.3s;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      border-color: #4CAF50;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 14px;
+      margin-top: 10px;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .show-error-message {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes slide-up {
+      from {
+        transform: translateY(100%);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes shake {
+      0% {
+        transform: translateX(-10px);
+      }
+      50% {
+        transform: translateX(10px);
+      }
+      100% {
+        transform: translateX(-10px);
+      }
+    }
+  </style>
+  <script>
+    function login() {
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+      // Perform login validation
+      // Replace with your own validation logic
+      if (username === "admin" && password === "password") {
+        // Redirect to another website
+        window.location.href = "index.html";
+      } else {
+        // Display error message and shake the container
+        var errorMessage = document.getElementById("error-message");
+        errorMessage.innerText = "Invalid username or password.";
+        errorMessage.classList.add("show-error-message");
+        document.getElementById("container").classList.add("shake");
+
+        // Remove error message and shake class after 3 seconds
+        setTimeout(function() {
+          errorMessage.classList.remove("show-error-message");
+          document.getElementById("container").classList.remove("shake");
+        }, 3000);
+      }
+    }
+  </script>
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Login</h1>
+    <input type="text" id="username" placeholder="Username" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button onclick="login()">Login</button>
+    <p id="error-message" class="error-message"></p>
+  </div>
+</body>
+</html>
+
+
+
+

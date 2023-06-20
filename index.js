@@ -11,8 +11,7 @@ window.onload = function() {
     appId: "1:787111306016:web:c54ab830474afb9a06ad45",
     measurementId: "G-PZJVC849Y4"
   };
-
-  // Initialize Firebase
+ // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
   var db = firebase.database();
@@ -162,18 +161,11 @@ window.onload = function() {
     }
 
     save_name(name) {
-      if (!this.get_name()) {
-        localStorage.setItem('name', name);
-      }
+      localStorage.setItem('name', name);
     }
 
     get_name() {
       return localStorage.getItem('name');
-    }
-
-    logout() {
-      localStorage.removeItem('name');
-      this.home();
     }
 
     send_message(message) {
@@ -223,5 +215,10 @@ window.onload = function() {
   }
 
   var chat = new MEME_CHAT();
-  chat.home();
+  var username = localStorage.getItem('name');
+  if (username) {
+    chat.chat();
+  } else {
+    chat.home();
+  }
 };

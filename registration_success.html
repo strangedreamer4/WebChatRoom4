@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Success</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <style>
+    /* Add your custom CSS for animations here */
+    .message {
+      font-size: 24px;
+      text-align: center;
+      margin-top: 200px;
+      /* Apply animation */
+      animation-duration: 1s;
+      animation-name: animate__bounceIn;
+    }
+
+    .back-button {
+      display: block;
+      width: 200px;
+      margin: 20px auto;
+      text-align: center;
+      /* Apply animation */
+      animation-duration: 1s;
+      animation-name: animate__fadeInUp;
+    }
+  </style>
+</head>
+<body>
+  <div class="message animate__animated animate__bounceIn">
+    <h2>You are registered!</h2>
+    
+  </div>
+
+  <div class="back-button animate__animated animate__fadeInUp">
+    <button onclick="goBack()">Go Back</button>
+  </div>
+
+  <script>
+    function goBack() {
+      // Navigate back to the previous page
+      window.history.back();
+    }
+  </script>
+</body>
+</html>

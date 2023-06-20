@@ -12,7 +12,6 @@ window.onload = function() {
     measurementId: "G-PZJVC849Y4"
   };
 
-  
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
@@ -151,6 +150,16 @@ window.onload = function() {
       };
 
       chat_input_container.append(chat_input, chat_input_send);
+
+      // Clear Button
+      var clear_button = document.createElement('button');
+      clear_button.setAttribute('id', 'clear_button');
+      clear_button.innerHTML = 'Clear Chat';
+      clear_button.onclick = function() {
+        parent.clear_chat();
+      };
+      chat_input_container.append(clear_button);
+
       chat_container.append(chat_content_container, chat_input_container);
       document.body.append(chat_container);
 
@@ -213,6 +222,12 @@ window.onload = function() {
 
       message_container.append(name_element, message_element, timestamp_element);
       chat_content_container.append(message_container);
+    }
+    
+    clear_chat() {
+      if (confirm('Are you sure you want to clear the chat?')) {
+        db.ref('messages/').remove();
+      }
     }
   }
 

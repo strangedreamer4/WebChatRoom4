@@ -11,7 +11,8 @@ window.onload = function() {
     appId: "1:787111306016:web:c54ab830474afb9a06ad45",
     measurementId: "G-PZJVC849Y4"
   };
- // Initialize Firebase
+
+  // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
   var db = firebase.database();
@@ -72,9 +73,11 @@ window.onload = function() {
       };
 
       join_button.onclick = function() {
-        parent.save_name(join_input.value);
-        join_container.remove();
-        parent.create_chat();
+        if (!parent.get_name()) {
+          parent.save_name(join_input.value);
+          join_container.remove();
+          parent.create_chat();
+        }
       };
 
       join_button_container.append(join_button);
@@ -161,11 +164,20 @@ window.onload = function() {
     }
 
     save_name(name) {
-      localStorage.setItem('name', name);
+      if (!this.get_name()) {
+        localStorage.setItem('name', name);
+      }
     }
 
     get_name() {
       return localStorage.getItem('name');
+    }
+
+    logout() {
+      if (confirm('Are you sure you want to log out?')) {
+        localStorage.removeItem('name');
+        this.home();
+      }
     }
 
     send_message(message) {
@@ -215,10 +227,13 @@ window.onload = function() {
   }
 
   var chat = new MEME_CHAT();
-  var username = localStorage.getItem('name');
-  if (username) {
-    chat.chat();
-  } else {
-    chat.home();
-  }
+  chat.home();
+
+  var logout_button = document.createElement('button');
+  logout_button.setAttribute('id', 'logout_button');
+  logout_button.textContent = 'Log Out';
+  logout_button.onclick = function() {
+    chat.logout();
+  };
+  document.body.appendChild(logout_button);
 };

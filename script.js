@@ -90,7 +90,7 @@ function login() {
       database_ref.child('users/' + user.uid).update(user_data)
 
       // Redirect to a new page after successful login
-      window.location.href = "maimpage";
+      window.location.href = "mainpage";
     })
     .catch(function (error) {
       // Firebase will use this to alert of its errors

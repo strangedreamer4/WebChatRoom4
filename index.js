@@ -11,8 +11,7 @@ window.onload = function() {
     appId: "1:787111306016:web:c54ab830474afb9a06ad45",
     measurementId: "G-PZJVC849Y4"
   };
-
-  // Initialize Firebase
+// Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
   var db = firebase.database();
@@ -40,6 +39,17 @@ window.onload = function() {
       title_inner_container.append(title);
       title_container.append(title_inner_container);
       document.body.append(title_container);
+
+      // Logout Button
+      var logout_button = document.createElement('button');
+      logout_button.setAttribute('id', 'logout_button');
+      logout_button.textContent = 'Logout';
+      title_inner_container.append(logout_button);
+
+      var parent = this;
+      logout_button.onclick = function() {
+        parent.logout();
+      };
     }
 
     create_join_form() {
@@ -212,6 +222,11 @@ window.onload = function() {
 
       message_container.append(name_element, message_element, timestamp_element);
       chat_content_container.append(message_container);
+    }
+
+    logout() {
+      localStorage.removeItem('name');
+      location.reload();
     }
   }
 

@@ -11,9 +11,10 @@ window.onload = function() {
     appId: "1:787111306016:web:c54ab830474afb9a06ad45",
     measurementId: "G-PZJVC849Y4"
   };
-// Initialize Firebase
+
+  // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  
+
   var db = firebase.database();
 
   class MEME_CHAT {

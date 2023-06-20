@@ -213,8 +213,6 @@ window.onload = function() {
       chat_content_container.append(message_container);
     }
   }
- 
-  }
 
   var chat = new MEME_CHAT();
   var username = localStorage.getItem('name');

@@ -10,6 +10,7 @@ window.onload = function() {
     messagingSenderId: "787111306016",
     appId: "1:787111306016:web:c54ab830474afb9a06ad45",
     measurementId: "G-PZJVC849Y4"
+  };
  // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
@@ -37,22 +38,18 @@ window.onload = function() {
       title.textContent = 'ChatWebRoom';
       title_inner_container.append(title);
       title_container.append(title_inner_container);
+      document.body.append(title_container);
 
-      // Logout button
+      // Logout Button
       var logout_button = document.createElement('button');
       logout_button.setAttribute('id', 'logout_button');
       logout_button.textContent = 'Logout';
-      logout_button.onclick = this.logout.bind(this);
       title_inner_container.append(logout_button);
 
-      // Kickout button
-      var kickout_button = document.createElement('button');
-      kickout_button.setAttribute('id', 'kickout_button');
-      kickout_button.textContent = 'Kickout';
-      kickout_button.onclick = this.kickout_user.bind(this);
-      title_inner_container.append(kickout_button);
-
-      document.body.append(title_container);
+      var parent = this;
+      logout_button.onclick = function() {
+        parent.logout();
+      };
     }
 
     create_join_form() {
@@ -175,9 +172,7 @@ window.onload = function() {
     }
 
     save_name(name) {
-      if (!localStorage.getItem('name')) {
-        localStorage.setItem('name', name);
-      }
+      localStorage.setItem('name', name);
     }
 
     get_name() {
@@ -234,23 +229,9 @@ window.onload = function() {
       location.reload();
     }
 
-    kickout_user() {
-      var parent = this;
-      var name = this.get_name();
-      if (name) {
-        var confirmKickout = confirm("Are you sure you want to kick out the user?");
-        if (confirmKickout) {
-          var kickoutRef = db.ref('kickouts/');
-          kickoutRef.push().set(name, function(error) {
-            if (error) {
-              console.log("Error kicking out the user:", error);
-            } else {
-              console.log("User kicked out successfully.");
-              parent.logout();
-            }
-          });
-        }
-      }
+    kick_user(name) {
+      var kickRef = db.ref('kickedUsers/');
+      kickRef.push().set(name);
     }
   }
 

@@ -74,7 +74,7 @@ window.onload = function() {
   
         title.setAttribute('id', 'title')
   
-        title.textContent = 'WebChatRoom'
+        title.textContent = 'ChatWebRoom'
   
   
         title_inner_container.append(title)
@@ -126,7 +126,7 @@ window.onload = function() {
   
         join_input.setAttribute('maxlength', 15)
   
-        join_input.placeholder = 'No.... It\'s Patrick Star'
+        join_input.placeholder = 'Enter your username'
   
         // Every time we type into the join_input
   

@@ -606,7 +606,26 @@ window.onload = function() {
       }
   
     }
-  
+
+// ...
+
+// chat_input onkeyup event listener
+chat_input.onkeyup = function (event) {
+  if (chat_input.value.length > 0) {
+    chat_input_send.removeAttribute('disabled');
+    chat_input_send.classList.add('enabled');
+    if (event.keyCode === 13) {
+      // If Enter key is pressed, simulate a click on chat_input_send
+      chat_input_send.click();
+    }
+  } else {
+    chat_input_send.classList.remove('enabled');
+  }
+};
+
+
+
+
     // So we've "built" our app. Let's make it work!!
   
     var app = new MEME_CHAT()

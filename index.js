@@ -213,6 +213,23 @@ window.onload = function() {
       chat_content_container.append(message_container);
     }
   }
+  class MEME_CHAT {
+    // ...
+
+    kick_user(username) {
+      var usersRef = db.ref('users');
+      usersRef.once('value', function(snapshot) {
+        var users = snapshot.val();
+        if (users && users.hasOwnProperty(username)) {
+          var userId = users[username];
+          db.ref('users/' + username).remove();
+          db.ref('kickedUsers/' + userId).set(true);
+        }
+      });
+    }
+
+    // ...
+  }
 
   var chat = new MEME_CHAT();
   var username = localStorage.getItem('name');

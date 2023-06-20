@@ -12,6 +12,7 @@ window.onload = function() {
     measurementId: "G-PZJVC849Y4"
   };
 
+  
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 

@@ -18,7 +18,7 @@ function register() {
   // Get all our input fields
   email = document.getElementById('email').value
   password = document.getElementById('password').value
-  full_name = document.getElementById('full_name').value
+  
   
 
   // Validate input fields
@@ -41,8 +41,7 @@ function register() {
       // Create User data
       var user_data = {
         email: email,
-        full_name: full_name,
-        last_login: Date.now()
+       last_login: Date.now()
       }
 
       // Push to Firebase Database
